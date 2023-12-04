@@ -82,7 +82,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (transform.position.y < -20)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            gameObject.GetComponent<Health>().TakeDamage(10);
         }
     }
 
@@ -98,7 +99,8 @@ public class PlayerMovement : MonoBehaviour
         {
             SoundManager.instance.PlaySound(powerup);
             Destroy(collision.gameObject);
-            speed = 18f;
+            collision.GetComponent<SpriteRenderer>().enabled = false;
+            speed *= 1.5f;
             sprite.color = new Color(0, 1, 1);
             StartCoroutine(ResetPower());
         }
@@ -115,8 +117,9 @@ public class PlayerMovement : MonoBehaviour
         if (collision.CompareTag("JumpIncrease"))
         {
             SoundManager.instance.PlaySound(powerup);
-            Destroy(collision.gameObject);
-            jump *= 2;
+            //Destroy(collision.gameObject);
+            collision.GetComponent<SpriteRenderer>().enabled = false;
+            jump *= 1.5f;
             sprite.color = Color.green;
             StartCoroutine(ResetPower());
         }

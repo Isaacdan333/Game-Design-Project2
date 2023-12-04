@@ -41,7 +41,7 @@ public class Health : MonoBehaviour
             anim.SetTrigger("hurt");
             StartCoroutine(Invulnerablity());
         }
-        else 
+        else
         {
             if (!dead)
             {
